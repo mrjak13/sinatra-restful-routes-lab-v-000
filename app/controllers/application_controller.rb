@@ -10,14 +10,11 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/recipes' do
-    @recipes = Recipe.all
-    # binding.pry
+    @recipes = Recipe.all  
     erb :index
   end
 
   post '/recipes' do
-    # binding.pry
-    # raise params.inspect
     @recipe = Recipe.create(params)
     redirect to ("recipes/#{@recipe.id}")
   end
@@ -25,6 +22,10 @@ class ApplicationController < Sinatra::Base
   get '/recipes/:id' do
     @recipe = Recipe.find(params[:id])
     erb :show
+  end
+
+  post 'recipes/:id/delete' do
+    @recipe
   end
 
 end
